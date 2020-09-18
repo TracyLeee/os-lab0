@@ -13,6 +13,7 @@
  * @author Atri Bhattacharyya, Adrien Ghosn
  */
 #include <stdlib.h>
+#include <string.h>
 #include "week01.h"
 
 int w1_strcmp(const char *s1, const char *s2) {
@@ -201,17 +202,25 @@ w1_count_result_t w1_count_letter_freq(char* file) {
   FILE *fd = fopen(file, "r");
   if (!fd) return NULL;
 
-  w1_count_result_t freq_arr = (w1_count_result_t)malloc(sizeof(double)*FREQ_LEN);
+  w1_count_result_t freq_arr = (w1_count_result_t)malloc(sizeof(w1_freq_t)*FREQ_LEN);
   memset(freq_arr, 0, sizeof(double)*FREQ_LEN);
   int tmp_char;
+  int total_num = 0;
 
-  while (tmp_char = fgetc(fd) != EOF) {
+  while ((tmp_char = fgetc(fd)) != EOF) {
     if ('A' <= tmp_char && tmp_char <= 'Z') tmp_char += 'a' - 'A';
 
-    if ('a' <= tmp_char && tmp_char <= 'z') ++freq_arr[tmp_char - 'a'];
+    if ('a' <= tmp_char && tmp_char <= 'z') {
+      ++freq_arr[tmp_char - 'a'];
+      ++total_num;
+    }
   }
 
   fclose(fd);
+
+  if (total_num) {
+    for (int i = 0; i < FREQ_LEN; ++i) freq_arr[i] /= (double)total_num;
+  }
 
   return freq_arr;
 }
