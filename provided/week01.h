@@ -92,6 +92,7 @@ typedef struct Node {
 
 /**
  * @brief prints to fd the post-order traversal of the binary tree rooted in node.
+ *        For each element, use the format specifier "%d " for printing
  *
  * post-order is left, right, root.
  *
@@ -102,6 +103,7 @@ void w1_print_post_order(Node* node, FILE* fd);
 
 /**
  * @brief prints to fd the pre-order traversal of the binary tree rooted in node.
+ *        For each element, use the format specifier "%d " for printing
  *
  * pre-order is root, left, right.
  *
@@ -111,6 +113,7 @@ void w1_print_post_order(Node* node, FILE* fd);
 void w1_print_pre_order(Node* node, FILE* fd);
 /**
  * @brief prints to fd the in-order traversal of the binary tree rooted in node.
+ *        For each element, use the format specifier "%d " for printing
  *
  * in-order is left, root, right.
  *

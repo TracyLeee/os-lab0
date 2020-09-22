@@ -121,3 +121,46 @@ Finally, the last exercise is an alphabet frequency counter where you count
 the number of occurences of each English letter in the text from a file.
 This is meant to help you recollect file I/O.
 
+## Lab 0, week 2
+In this week, we provide the following additional files:
+1. `provided/week02.h`: Header file for the exercises
+1. `provided/week02.c`: Implementation for the exercises. Look at the TODOs in
+   this file.
+1. `provided/main.c`: Sample function calls with provided inputs and expected
+   outputs. Use these as preliminary test cases.
+
+As with the previous lab, you have to implement some functions in the provided
+files. The descriptions of these functions are available in the header file,
+`provided/week02.h`. There are 3 functions to implement: `w2_bork()`,
+`w2_fork()`, and `w2_clone()`.
+
+The first exercise requires you to complete a provided function outline to
+fork a parent process into `n` child processes. Each child calls `verify()` when
+it spawns, then it terminates. The parent waits for every spawned child to exit
+before spawning the next. A more descriptive specification is available in the
+description of `w2_bork()`.
+
+The second exercise requires you to implement a function that forks the parent
+processes in a tree structure based on a provided skeleton binary tree. The
+skeleton tree represents the execution timeline: starting from the initial root
+process, children fork off the main timeline and complete their own tasks, which
+could include also forking off other children themselves. When children finish
+their tasks, they terminate, allowing the root process to control the main
+execution path at all times. A more descriptive example is available in the
+description of `w2_fork()`.
+
+The third exercise requires you to extend `w2_fork()` to allow parent processes
+to create threads to accomplish parallel tasks, before forking off to children.
+Each parent process has a specific number of threads to spawn before forking,
+and that number is also specified as part of the provided skeleton tree in
+`w2_clone()`. A more descriptive example is available in the description of
+`w2_clone()`.
+
+In all functions, verification methods are provided as arguments. These methods
+must be called as specified in the descriptions of the functions, to allow our
+unit tests to verify that your solution is correct.
+
+Sample code is also provided in `main.c`, showing you how binary skeleton trees
+are represented sequentially (in array format). Dummy verification functions are
+also provided, to print out the structure of the forked processes and allow you
+to partially debug your code.

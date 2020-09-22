@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "week01.h"
+#include "week02.h"
 
 /* This is an example of using the unit testing framework `check`.
  * There are two components to each test:
@@ -58,6 +59,19 @@ START_TEST(example_test) {
 }
 END_TEST
 
+/* print_hello prints Hello World */
+void print_hello() {
+    printf("Hello world, %d\n", getpid());
+}
+
+START_TEST(example_test2) {
+    /* This should call print_hello twice,
+     * printing "Hello world, ____" with different PIDs */
+    bool root[] = {true, true, false, false, false};
+    w2_fork(root, 0, print_hello);
+}
+END_TEST
+
 int main()
 {
   Suite* s = suite_create("Week 01 tests");
@@ -66,6 +80,7 @@ int main()
 
   /* Add your own tests here */
   tcase_add_test(tc1, example_test);
+  tcase_add_test(tc1, example_test2);
 
   SRunner *sr = srunner_create(s);
   srunner_run_all(sr, CK_VERBOSE);

@@ -7,14 +7,18 @@ COMMON = week01.o
 HEADERS = week01.h
 TESTS = tests
 
+COMMON += week02.o
+HEADERS += week02.h
+APP += main
+
 # ## ---------------------------------------------------
 # ## --------- Template stuff : Do not touch -----------
 .PHONY: all test feedback clean
 all: ${APP} ${TESTS}
 
 feedback:
-	docker pull atrib/cs323_lab0:w1
-	-docker run --rm --name=cs323 --cap-add=SYS_PTRACE -v ${shell pwd}:/done atrib/cs323_lab0:w1 ${TESTS}
+	docker pull atrib/cs323_lab0:w2
+	-docker run --rm --name=cs323 --cap-add=SYS_PTRACE -v ${shell pwd}:/done atrib/cs323_lab0:w2 ${TESTS}
 
 test: ${TESTS}
 	${foreach test,${TESTS},LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${PWD} ./${test}}
